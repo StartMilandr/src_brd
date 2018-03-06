@@ -25,7 +25,7 @@ void SetSelectRI(SelectRI extraI)
 	MDR_BKP->REG_0E = temp;		
 }
 
-void BRD_Clock_Init_HSE_PLL(uint32_t PLL_Mul)  // 128 MHz
+void BRD_Clock_Init_HSE_PLL(uint32_t PLL_Mul)
 {
 	RST_CLK_DeInit();
 	

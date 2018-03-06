@@ -9,7 +9,8 @@
 // #define USE_BOARD_VE_93
 // #define USE_BOARD_VE_1 
 // #define USE_BOARD_VE_3 
-// #define USE_BOARD_VE_4  
+// #define USE_BOARD_VE_4 
+// #define USE_BOARD_VE_8 
 
 
 #endif //_BRD_SELECT_H

@@ -38,9 +38,14 @@
     #define BRD_LED_1              PORT_Pin_7
     #define BRD_LED_2              PORT_Pin_8
     #define BRD_LED_3              PORT_Pin_9
-    #define BRD_LED_4              PORT_Pin_10	
+    #define BRD_LED_4              PORT_Pin_10
+    #define BRD_LED_5              PORT_Pin_11
+    #define BRD_LED_6              PORT_Pin_12
+    #define BRD_LED_7              PORT_Pin_13
+    #define BRD_LED_8              PORT_Pin_14	    
   
-    #define BRD_LED_Pins        (BRD_LED_1 | BRD_LED_2 | BRD_LED_3 | BRD_LED_4)
+    #define BRD_LED_Pins        (BRD_LED_1 | BRD_LED_2 | BRD_LED_3 | BRD_LED_4  \
+                               | BRD_LED_5 | BRD_LED_6 | BRD_LED_7 | BRD_LED_8)
 
 //  SPI Definition
 	  #define BRD_SPI1_D_PIN_CLK	PORT_Pin_4

@@ -1,6 +1,14 @@
 #ifndef _BRD_BTN_H
 #define _BRD_BTN_H
 
+#ifdef USE_BOARD_VE_8 
+  #include  <mdr32f8_port.h>
+  #include  <mdr32f8_clkctrl.h>   
+#else  
+  #include <MDR32F9Qx_port.h>
+  #include <MDR32F9Qx_rst_clk.h>
+#endif
+
 void BRD_BTNs_Init (void);
 
 uint32_t BRD_Is_BntAct_Select(void);

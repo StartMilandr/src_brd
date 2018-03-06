@@ -27,6 +27,10 @@
 
   #include "brdDef_VE4.h"
 
+#elif defined ( USE_BOARD_VE_8 )
+
+  #include "brdDef_VE8.h"
+
 #endif
 
 #endif // _BRD_DEF
