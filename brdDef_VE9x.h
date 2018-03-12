@@ -114,6 +114,11 @@
     #define BRD_UART2_RX_PB1_PINS        PORT_Pin_1
     #define BRD_UART2_RX_PB1_FUNC        PORT_FUNC_OVERRID
     
+//  ---------------  ADC Definition ---------------- 
+    #define BRD_ADC_7_PIN           PORT_Pin_7
+    #define BRD_ADC_7_PORT          MDR_PORTD
+    #define BRD_ADC_7_CLOCK         RST_CLK_PCLK_PORTD
+   
     
 
 #else
