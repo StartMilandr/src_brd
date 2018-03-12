@@ -15,7 +15,7 @@ void BRD_ETH_StructInitDef(ETH_InitTypeDef * ETH_InitStruct, uint8_t *srcMAC)
 	ETH_InitStruct->ETH_MAC_Address[1] = (srcMAC[3] << 8) | srcMAC[2]; //0x3456;
 	ETH_InitStruct->ETH_MAC_Address[2] = (srcMAC[5] << 8) | srcMAC[4]; //0x0012;
   
-	ETH_InitStruct->ETH_PHY_LB = DISABLE;
+	ETH_InitStruct->ETH_PHY_LB = DISABLE; //ENABLE; //
 	ETH_InitStruct->ETH_PHY_DLB = DISABLE;
 	ETH_InitStruct->ETH_PHY_HALFD = DISABLE;
 	/*ETH_InitStruct.ETH_PHY_EARLY_DV = 0;*///RESERVED
@@ -27,24 +27,25 @@ void BRD_ETH_StructInitDef(ETH_InitTypeDef * ETH_InitStruct, uint8_t *srcMAC)
 	ETH_InitStruct->ETH_PHY_A_TRIM = 0x4;
 	ETH_InitStruct->ETH_PHY_A_TRIMR = 0x80;
 		
-	ETH_InitStruct->ETH_Extension_Mode  = ENABLE;
+	ETH_InitStruct->ETH_Extension_Mode  = DISABLE; //ENABLE;
 	ETH_InitStruct->ETH_ColWnd 				  = 0x5;
 	ETH_InitStruct->ETH_HalfDuplex_Mode = DISABLE;
 	ETH_InitStruct->ETH_Register_CLR 	  = DISABLE;
 	ETH_InitStruct->ETH_DBG_XF          = ENABLE;
 	ETH_InitStruct->ETH_DBG_RF          = ENABLE;
 
-	ETH_InitStruct->ETH_Loopback_Mode   = ENABLE; //DISABLE;
+	ETH_InitStruct->ETH_Loopback_Mode   = DISABLE;
   
+  //ETH_InitStruct->ETH_Buffer_Mode 		= ETH_BUFFER_MODE_LINEAR;
   ETH_InitStruct->ETH_Buffer_Mode 		= ETH_BUFFER_MODE_AUTOMATIC_CHANGE_POINTERS;
 	//ETH_InitStruct->ETH_Buffer_Mode 		= ETH_BUFFER_MODE_FIFO;  
 
 	ETH_InitStruct->ETH_Receive_All_Packets = ENABLE;
 	ETH_InitStruct->ETH_Error_CRC_Frames_Reception = ENABLE;
 	ETH_InitStruct->ETH_Receiver_Event_Mode = ETH_RECEIVER_EVENT_MODE_PACET_RECEIVED;
-	ETH_InitStruct->ETH_Receiver_BE = ETH_RECEIVER_BE_BIG_ENDIAN;
+	ETH_InitStruct->ETH_Receiver_BE = ETH_RECEIVER_BE_LITTLE_ENDIAN;
 		
-	ETH_InitStruct->ETH_Transmitter_BE = ETH_TRANSMITTER_BE_BIG_ENDIAN;
+	ETH_InitStruct->ETH_Transmitter_BE = ETH_TRANSMITTER_BE_LITTLE_ENDIAN;
 	ETH_InitStruct->ETH_Transmitter_Event_Mode = ETH_TRANSMITTER_EVENT_MODE_XFIFO_ALMOST_EMPTY;
 	ETH_InitStruct->ETH_Automatic_Pad_Strip = ENABLE;
 	ETH_InitStruct->ETH_Automatic_Preamble = ENABLE;
@@ -56,8 +57,6 @@ void BRD_ETH_StructInitDef(ETH_InitTypeDef * ETH_InitStruct, uint8_t *srcMAC)
 void BRD_ETH_Init(MDR_ETHERNET_TypeDef * ETHERNETx, ETH_InitTypeDef * ETH_InitStruct)
 {
 	CLKCTRL_PER0_CLKcmd(CLKCTRL_PER0_CLK_MDR_ENET0_EN, ENABLE);
-//	CLKCTRL_PER0_CLKcmd(CLKCTRL_PER0_CLK_MDR_PORTC_EN, ENABLE); // - ??
-//	PORTC->KEY		=_KEY_;
 
 	ETH_ClockDeInit();
 	ETH_PHY_ClockConfig(ETH_PHY_CLOCK_SOURCE_PLL0, ETH_PHY_HCLKdiv1);
@@ -81,7 +80,7 @@ void BRD_ETH_InitIRQ(MDR_ETHERNET_TypeDef * ETHERNETx, uint32_t IMR_Flags)
 
 void BRD_ETH_Start(MDR_ETHERNET_TypeDef * ETHERNETx)
 {
-	ETH_Start(ETHERNETx); //MDR_ETH0);
+	ETH_Start(ETHERNETx);
 }
 
 void BRD_ETH_WaitAutoneg_Completed(MDR_ETHERNET_TypeDef * ETHERNETx)
@@ -91,6 +90,7 @@ void BRD_ETH_WaitAutoneg_Completed(MDR_ETHERNET_TypeDef * ETHERNETx)
 
 uint32_t BRD_ETH_TryReadFrame(MDR_ETHERNET_TypeDef * ETHERNETx, ETH_StatusPacketReceptionTypeDef * RXStatus)
 {
+//if (ETH_GetMACITStatus(MDR_ETH0, ETH_MAC_IT_RF_OK) == SET)
 	if(ETHERNETx->R_HEAD != ETHERNETx->R_TAIL)
   {
 		RXStatus->Status = ETH_ReceivedFrame(ETHERNETx, FrameRX);
@@ -103,10 +103,9 @@ uint8_t* BRD_ETH_Init_FrameTX(uint8_t *destMAC, uint8_t *srcMAC, uint16_t frameL
 {
 	uint8_t * ptr_TXFrame = (uint8_t *) &FrameTX[4];
   *payloadLen = frameLen - FRAME_HEAD_SIZE;
-  uint16_t frmLen = *payloadLen + FRAME_CRC_SIZE;
   
 	//	Count To Send
-	*(uint32_t *)&FrameTX[0] = (frameLen);
+	*(uint32_t *)&FrameTX[0] = frameLen;
 	
 	// Ethernet
 	/* Set destanation MAC address */
@@ -125,10 +124,9 @@ uint8_t* BRD_ETH_Init_FrameTX(uint8_t *destMAC, uint8_t *srcMAC, uint16_t frameL
 	ptr_TXFrame[10] = srcMAC[4];
 	ptr_TXFrame[11] = srcMAC[5];	
 
-  // Return dataCount
- 
-	ptr_TXFrame[12] 	= (uint8_t)(frmLen >> 8);
-	ptr_TXFrame[13] 	= (uint8_t)(frmLen & 0xFF);	
+  // Return dataCount  
+	ptr_TXFrame[12] 	= (uint8_t)((*payloadLen) >> 8);
+	ptr_TXFrame[13] 	= (uint8_t)((*payloadLen) & 0xFF);	
 
   // Return DataPtr
   return &ptr_TXFrame[FRAME_HEAD_SIZE];
