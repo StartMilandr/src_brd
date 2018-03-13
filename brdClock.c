@@ -1,8 +1,3 @@
-#include <MDR32F9Qx_port.h>
-#include <MDR32F9Qx_rst_clk.h>
-#include <MDR32F9Qx_eeprom.h>
-#include <MDR32F9Qx_config.h>
-
 #include "brdClock.h"
 
 // -------------------------- USE_MDR1986VE1x ---------------------	

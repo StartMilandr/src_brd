@@ -2,7 +2,7 @@
 #define _BRD_DEF_VE92
 
 
-#ifdef USE_MDR1986VE9x
+#ifdef USE_BOARD_VE_92
 
 #include "brdDef_VE9x.h"
 

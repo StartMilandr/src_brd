@@ -2,7 +2,7 @@
 #define _BRD_DEF_VE9x
 
 
-#ifdef USE_MDR1986VE9x
+#if defined (USE_BOARD_VE_91)  || defined (USE_BOARD_VE_92) || defined (USE_BOARD_VE_93) || defined (USE_BOARD_VE_94)
 
 //  ---------------  SPI Definition ----------------
     // SPI1 PortF
