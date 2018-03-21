@@ -1,11 +1,8 @@
-#include "mdr32f8_config.h"
-#include "mdr32f8_port.h"
-#include "mdr32f8_clkctrl.h"
-#include "spec.h"
+#include "brdClock.h"
 
 void BRD_Clock_Init_HSE0_PLL(uint32_t pll_Q, uint32_t pll_N)
 {  
-  POR_disable();
+    POR_disable();
   
 /* Set CLKCTRL to default */
 	CLKCTRL_DeInit();

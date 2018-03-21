@@ -28,7 +28,7 @@
     #define BRD_BTNs_PIN_MASK      (BRD_BTN_PIN_SEL | BRD_BTN_PIN_UP | BRD_BTN_PIN_RIGHT | BRD_BTN_PIN_DOWN | BRD_BTN_PIN_LEFT | BRD_BTN_PIN_BACK)
     
     //  for Is_BtnAct_...
-    #define BRD_BTNs_DO_INV
+    #define BRD_BTNs_PUSH_TO_GND
 
 
 //  LEDs Definition
