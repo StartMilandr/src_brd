@@ -40,4 +40,31 @@ void BRD_DMA_Init_Channel (uint32_t DMA_Channel, DMA_ChannelInitTypeDef*  pDMACh
 //  NVIC_ClearPendingIRQ (DMA_IRQn);
 //}	
 
+extern DMA_CtrlDataTypeDef DMA_ControlTable[DMA_Channels_Number * (1 + DMA_AlternateData)];
+
+void BRD_DMA_Read_ChannelCtrl(uint32_t DMA_Channel, uint32_t *dmaControl)
+{
+	*dmaControl = DMA_ControlTable[DMA_Channel].DMA_Control;
+}
+
+void BRD_DMA_Write_ChannelCtrl(uint32_t DMA_Channel, uint32_t dmaControl)
+{
+	DMA_ControlTable[DMA_Channel].DMA_Control = dmaControl;
+}
+
+//void BRD_DMA_Read_ChannelCtrlRec(uint32_t DMA_Channel, DMA_CtrlDataTypeDef *chanTable)
+//{
+//	chanTable->DMA_SourceEndAddr = DMA_ControlTable[DMA_Channel].DMA_SourceEndAddr;
+//	chanTable->DMA_DestEndAddr   = DMA_ControlTable[DMA_Channel].DMA_DestEndAddr;
+//	chanTable->DMA_Control       = DMA_ControlTable[DMA_Channel].DMA_Control;
+//}
+
+//void BRD_DMA_Write_ChannelCtrlRec(uint32_t DMA_Channel, uint32_t *chanTable)
+//{
+//	DMA_ControlTable[DMA_Channel].DMA_SourceEndAddr = chanTable->DMA_SourceEndAddr;
+//	DMA_ControlTable[DMA_Channel].DMA_DestEndAddr   = chanTable->DMA_DestEndAddr;
+//	DMA_ControlTable[DMA_Channel].DMA_Control       = chanTable->DMA_Control;
+//}
+
+
 
