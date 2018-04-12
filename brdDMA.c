@@ -1,6 +1,5 @@
 #include <MDR32F9Qx_port.h>
 #include <MDR32F9Qx_rst_clk.h>
-//#include <MDR32F9Qx_dma.h>
 
 #include "brdDMA.h"
 #include "brdDef.h"
@@ -8,13 +7,13 @@
 void BRD_DMA_Init(void)
 {
   // Включение тактирования модуля DMA
-  RST_CLK_PCLKcmd (DMA_CLOCK_SELECT, ENABLE);
-
-  // Сброс прерывания от DMA
-  NVIC_ClearPendingIRQ (DMA_IRQn);
+  //RST_CLK_PCLKcmd (BRD_DMA_CLOCK_SELECT, ENABLE); - Отключено для теста ошибки DMA при отсутствии тактирования от SSP1, SSP2
 
   // Деинициализация DMA
   DMA_DeInit();	
+  
+  // Сброс прерывания от DMA
+  NVIC_ClearPendingIRQ (DMA_IRQn);  
 }  
 
 // Инициализация модуля DMA
