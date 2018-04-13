@@ -44,6 +44,7 @@ uint32_t BRD_SPI_CanRead(SPI_Obj* BRD_SPI);
 //  Write-Read for master - slave
 uint16_t BRD_SPI_Wait_And_Read(SPI_Obj* BRD_SPI);                       // Return RDValue
 uint16_t BRD_SPI_Master_WRRD(SPI_Obj* BRD_SPI, uint16_t wrData);        // Return RDValue
+void BRD_SPI_Master_WR(SPI_Obj* BRD_SPI, uint16_t wrData);
 uint16_t BRD_SPI_Slave_RDWR(SPI_Obj* BRD_SPI, uint16_t wrNextData);     // Return RDValue
 void BRD_SPI_Slave_SendNext(SPI_Obj* BRD_SPI, uint16_t wrNextData);
 

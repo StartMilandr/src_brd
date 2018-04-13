@@ -85,6 +85,13 @@ uint16_t BRD_SPI_Master_WRRD(SPI_Obj* BRD_SPI, uint16_t wrData)  // Return RDVal
   return SSP_ReceiveData(BRD_SPI->SPIx);
 }
 
+void BRD_SPI_Master_WR(SPI_Obj* BRD_SPI, uint16_t wrData)
+{
+  //  Send  
+  SSP_SendData (BRD_SPI->SPIx, wrData);
+  while (SSP_GetFlagStatus (BRD_SPI->SPIx, SSP_FLAG_BSY) == SET); 
+}
+
 uint16_t BRD_SPI_Wait_And_Read(SPI_Obj* BRD_SPI)  // Return RDValue
 {
   while (!BRD_SPI_CanRead(BRD_SPI));
