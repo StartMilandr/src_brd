@@ -48,6 +48,7 @@
     #define BRD_LED_Pins           BRD_LED_1 | BRD_LED_2
 
 //  ----------  LCD Definition ---------------
+//  conflicts with LEDs!
     #define BRD_LCD_E1_PORT     MDR_PORTB
     #define BRD_LCD_E1_PIN      PORT_Pin_7
 

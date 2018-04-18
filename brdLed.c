@@ -1,7 +1,4 @@
-#include <MDR32F9Qx_port.h>
-#include <MDR32F9Qx_rst_clk.h>
-
-#include "brdDef.h"
+#include "brdLed.h"
 
 void BRD_LEDs_Init(void)
 {	
@@ -38,4 +35,8 @@ void BRD_LED_Switch(uint32_t LEDs_Sel)
 #endif
 }	
 
+uint32_t BRD_LED_Get(uint32_t LEDs_Sel)
+{
+  return (BRD_LED_PORT->RXTX & LEDs_Sel) == LEDs_Sel;
+}
 
