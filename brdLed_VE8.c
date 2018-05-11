@@ -9,7 +9,7 @@ void BRD_LEDs_Init(void)
 	
 	//	Clock for PORTC
 	CLKCTRL_PER0_CLKcmd(BRD_LED_PORT_CLK, ENABLE);
-	PORTC->KEY = _KEY_;
+	BRD_LED_PORT->KEY = _KEY_;
   
 	//  Post apply config
 	PORT_StructInit(&GPIOInitStruct);

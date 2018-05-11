@@ -8,17 +8,8 @@
 #ifdef USE_BOARD_VE_8 
   #include  <mdr32f8_clkctrl.h>
   #include  "spec.h"
-  
-//  #define RST_CLK_CPU_PLLmul1   8
-//  #define RST_CLK_CPU_PLLmul2   8
-  #define RST_CLK_CPU_PLLmul3   1
-  #define RST_CLK_CPU_PLLmul4   2
-  #define RST_CLK_CPU_PLLmul5   3
-  #define RST_CLK_CPU_PLLmul6   4
-  #define RST_CLK_CPU_PLLmul7   5
-  #define RST_CLK_CPU_PLLmul8   6
-  #define RST_CLK_CPU_PLLmul9   7
-  #define RST_CLK_CPU_PLLmul10  8  
+
+  #include "brdVE8_toVEx.h"
   
 #else  
   #include <MDR32F9Qx_port.h>

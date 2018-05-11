@@ -21,6 +21,11 @@
   #include <MDR32F9Qx_port.h>
   #include <MDR32F9Qx_rst_clk.h>
   #include <MDR32F9Qx_timer.h>
+  
+  #ifdef USE_BOARD_VE_1
+    #define Timer1_IRQn   TIMER1_IRQn
+  #endif  
+  
 #endif
 
 #include "brdClock.h"
@@ -35,10 +40,17 @@ typedef struct
   
 } Timer_Obj;
 
+//  Counter
 void BRD_Timer_InitStructDef(TIMER_CntInitTypeDef *TimerInitStruct, uint32_t freq, uint32_t rangeCNT);
 void BRD_Timer_Init(Timer_Obj *TimerObj, TIMER_CntInitTypeDef *TimerInitStruct);
 void BRD_Timer_InitIRQ(Timer_Obj *TimerObj, uint32_t priority);
 void BRD_Timer_Start(Timer_Obj *TimerObj);
+
+//  Channels
+void BRD_TimerChannel_InitStructPWM(uint16_t channel, TIMER_ChnInitTypeDef* pChanCfg, TIMER_ChnOutInitTypeDef* pChanOutCfg);
+void BRD_TimerChannel_InitStructCAP(uint16_t channel, TIMER_ChnInitTypeDef* pChanCfg, TIMER_ChnOutInitTypeDef* pChanOutCfg);
+void BRD_TimerChannel_Apply(MDR_TIMER_TypeDef* TimerX, TIMER_ChnInitTypeDef* pChanCfg, TIMER_ChnOutInitTypeDef* pChanOutCfg);
+
 
 //  Calc Period for output signal by Timer (with DMA)
 //  TimerInitStruct->TIMER_Prescaler = 0; 

@@ -6,7 +6,7 @@
 //  UNLOCK KEY
     #define _KEY_ 				         0x8555AAA1
 
-//  Buttons Definition
+//  --------------  Buttons Definition  ------------
     #define BRD_BTN_PORT_KEY1     PORTE
     #define BRD_BTN_PIN_KEY1      PORT_Pin_18
 
@@ -33,7 +33,7 @@
     #define BRD_BTN_PIN_DOWN    BRD_BTN_PIN_KEY3
 
 
-//  LEDs Definition
+//  ----------    LEDs Definition -------------
     #define BRD_LED_PORT_CLK       CLKCTRL_PER0_CLK_MDR_PORTC_EN
     #define BRD_LED_PORT           PORTC
   
@@ -48,6 +48,9 @@
   
     #define BRD_LED_Pins        (BRD_LED_1 | BRD_LED_2 | BRD_LED_3 | BRD_LED_4  \
                                | BRD_LED_5 | BRD_LED_6 | BRD_LED_7 | BRD_LED_8)
+
+//  ----------    DMA Definition -------------
+    #define BRD_DMA_CLOCK_SELECT  (CLKCTRL_PER0_CLK_MDR_DMA0_EN)
 
 #else
    Please, select board in brdSelect.h!

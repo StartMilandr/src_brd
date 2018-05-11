@@ -1,25 +1,25 @@
 #include "brdBtn.h"
 	
-// Инициализация линий ввода-вывода для работы с кнопками
+// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р»РёРЅРёР№ РІРІРѕРґР°-РІС‹РІРѕРґР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РєРЅРѕРїРєР°РјРё
 void BRD_BTNs_Init (void)
 {
-  // Структура для инициализация линий ввода-вывода
+  // РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р»РёРЅРёР№ РІРІРѕРґР°-РІС‹РІРѕРґР°
   PORT_InitTypeDef GPIOInitStruct;
 
-  // Включение тактирования портов
+  // Р’РєР»СЋС‡РµРЅРёРµ С‚Р°РєС‚РёСЂРѕРІР°РЅРёСЏ РїРѕСЂС‚РѕРІ
 #ifndef USE_MDR1986VE3  
   RST_CLK_PCLKcmd (BRD_BTNs_PORT_CLK, ENABLE);
 #else
   RST_CLK_PCLK2cmd (BRD_BTNs_PORT_CLK, ENABLE);
 #endif  
 
-  // Конфигурация линий ввода-вывода
+  // РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ Р»РёРЅРёР№ РІРІРѕРґР°-РІС‹РІРѕРґР°
   PORT_StructInit (&GPIOInitStruct);
-  GPIOInitStruct.PORT_Pin       = BRD_BTNs_PIN_MASK;    // Конфигурируемые линии ввода-вывода
-  GPIOInitStruct.PORT_SPEED     = PORT_SPEED_SLOW;     // Скорость передачи данных
-  GPIOInitStruct.PORT_MODE      = PORT_MODE_DIGITAL;   // Режим работы линий
+  GPIOInitStruct.PORT_Pin       = BRD_BTNs_PIN_MASK;    // РљРѕРЅС„РёРіСѓСЂРёСЂСѓРµРјС‹Рµ Р»РёРЅРёРё РІРІРѕРґР°-РІС‹РІРѕРґР°
+  GPIOInitStruct.PORT_SPEED     = PORT_SPEED_SLOW;     // РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
+  GPIOInitStruct.PORT_MODE      = PORT_MODE_DIGITAL;   // Р РµР¶РёРј СЂР°Р±РѕС‚С‹ Р»РёРЅРёР№
 	
-  // Инициализация линий ввода-вывода для работы со светодиодами
+  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р»РёРЅРёР№ РІРІРѕРґР°-РІС‹РІРѕРґР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃРІРµС‚РѕРґРёРѕРґР°РјРё
   PORT_Init (BRD_BTNs_PORT_MASK, &GPIOInitStruct);
 	
 #ifdef BRD_BTNS_DO_INIT_ext1

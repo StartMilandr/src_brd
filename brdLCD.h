@@ -45,7 +45,7 @@ void    LCD_PutString        (const char* string, int32_t y);                   
 void    LCD_ScrollString     (const char* string, int32_t y, int32_t shift);         // Горизональное перемещение строки
 void    LCD_PutImage         (const uint8_t* image, int32_t top,    int32_t left,    // Вывод изображения
                                                     int32_t bottom, int32_t right);
-
+//  Pattern for usage 
 //void LCD_ShowDelay(uint32_t presc, uint32_t delay)
 //{
 //  static char message[64];
