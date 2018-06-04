@@ -48,21 +48,39 @@
                                | BRD_LED_5 | BRD_LED_6 | BRD_LED_7 | BRD_LED_8)
 
 //  ----------    SPI Definition -------------
-	  #define BRD_SPI1_D_PIN_CLK	PORT_Pin_4
-	  #define BRD_SPI1_D_PIN_TX		PORT_Pin_2
-	  #define BRD_SPI1_D_PIN_RX		PORT_Pin_3
-	  #define BRD_SPI1_D_PIN_CS		PORT_Pin_5    
+    //  SPI 1
+	  #define BRD_SPI1_D_PIN_CLK	   PORT_Pin_4
+	  #define BRD_SPI1_D_PIN_TX		   PORT_Pin_2
+	  #define BRD_SPI1_D_PIN_RX		   PORT_Pin_3
+	  #define BRD_SPI1_D_PIN_CS		   PORT_Pin_5    
 
-	  #define BRD_SPI1_D_PORT_CLK    RST_CLK_PCLK_PORTD
-	  #define BRD_SPI1_D_PORT			   MDR_PORTD
-    #define BRD_SPI1_D_PINS        (BRD_SPI1_D_PIN_CLK | BRD_SPI1_D_PIN_TX | BRD_SPI1_D_PIN_RX | BRD_SPI1_D_PIN_CS)
-    #define BRD_SPI1_D_PINS_FUNC   PORT_FUNC_ALTER
+	  #define BRD_SPI1_D_PORT_CLK     RST_CLK_PCLK_PORTD
+	  #define BRD_SPI1_D_PORT			    MDR_PORTD
+    #define BRD_SPI1_D_PINS         (BRD_SPI1_D_PIN_CLK | BRD_SPI1_D_PIN_TX | BRD_SPI1_D_PIN_RX | BRD_SPI1_D_PIN_CS)
+    #define BRD_SPI1_D_PINS_FUNC    PORT_FUNC_ALTER
     
     #define BRD_SPI1_D_PINS_FUNC_CLEAR  (~ ((3 << (4 * 2)) | \
                                             (3 << (2 * 2)) | \
                                             (3 << (3 * 2)) | \
                                             (3 << (5 * 2))   \
                                         ))
+                                        
+    //  SPI 2
+	  #define BRD_SPI2_D_PIN_CLK	    PORT_Pin_9
+	  #define BRD_SPI2_D_PIN_TX		    PORT_Pin_7
+	  #define BRD_SPI2_D_PIN_RX		    PORT_Pin_8
+	  #define BRD_SPI2_D_PIN_CS		    PORT_Pin_10    
+
+	  #define BRD_SPI2_D_PORT_CLK     RST_CLK_PCLK_PORTD
+	  #define BRD_SPI2_D_PORT			    MDR_PORTD
+    #define BRD_SPI2_D_PINS         (BRD_SPI2_D_PIN_CLK | BRD_SPI2_D_PIN_TX | BRD_SPI2_D_PIN_RX | BRD_SPI2_D_PIN_CS)
+    #define BRD_SPI2_D_PINS_FUNC    PORT_FUNC_MAIN
+    
+    #define BRD_SPI2_D_PINS_FUNC_CLEAR  (~ ((3 << (9 * 2)) | \
+                                            (3 << (7 * 2)) | \
+                                            (3 << (8 * 2)) | \
+                                            (3 << (10 * 2))  \
+                                        ))                                        
 
 //  ----------    DMA Definition -------------
     #define BRD_DMA_CLOCK_SELECT  (RST_CLK_PCLK_SSP1 | RST_CLK_PCLK_SSP2 | RST_CLK_PCLK_SSP3 |RST_CLK_PCLK_DMA)

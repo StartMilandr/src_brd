@@ -6,83 +6,118 @@
 
 #if defined (USE_MDR1986VE1T)
 
-  #define  BRD_SPI_PORT_CLK         BRD_SPI1_D_PORT_CLK 
-  #define  BRD_SPI_PORT             BRD_SPI1_D_PORT
-  #define  BRD_SPI_PINS             BRD_SPI1_D_PINS
-  #define  BRD_SPI_PINS_FUNC        BRD_SPI1_D_PINS_FUNC
-  #define  BRD_SPI_PINS_FUNC_CLEAR  BRD_SPI1_D_PINS_FUNC_CLEAR      
+//  SPI1 Select Pins
+  #define  BRD_SPI1_PORT_CLK         BRD_SPI1_D_PORT_CLK 
+  #define  BRD_SPI1_PORT             BRD_SPI1_D_PORT
+  #define  BRD_SPI1_PINS             BRD_SPI1_D_PINS
+  #define  BRD_SPI1_PINS_FUNC        BRD_SPI1_D_PINS_FUNC
+  #define  BRD_SPI1_PINS_FUNC_CLEAR  BRD_SPI1_D_PINS_FUNC_CLEAR      
   
-  #define  BRD_SPI_CLOCK          RST_CLK_PCLK_SSP1
-  //#define  BRD_SPI_CLOCK         (RST_CLK_PCLK_SSP1 | RST_CLK_PCLK_SSP2 | RST_CLK_PCLK_SSP3 | RST_CLK_PCLK_DMA)
-  #define  BRD_SPI                MDR_SSP1
+  #define  BRD_SPI1_CLOCK            RST_CLK_PCLK_SSP1
+  #define  BRD_SPI1                  MDR_SSP1
+
+//  SPI2 Select Pins
+  #define  BRD_SPI2_PORT_CLK         BRD_SPI2_D_PORT_CLK 
+  #define  BRD_SPI2_PORT             BRD_SPI2_D_PORT
+  #define  BRD_SPI2_PINS             BRD_SPI2_D_PINS
+  #define  BRD_SPI2_PINS_FUNC        BRD_SPI2_D_PINS_FUNC
+  #define  BRD_SPI2_PINS_FUNC_CLEAR  BRD_SPI2_D_PINS_FUNC_CLEAR      
+  
+  #define  BRD_SPI2_CLOCK            RST_CLK_PCLK_SSP2
+  #define  BRD_SPI2                  MDR_SSP2
   
 #elif defined (USE_MDR1986VE9x)
 
-  //  SPI Selection
-  //#define SPI2_PORT_F
-  #define SPI2_PORT_D
-
-  #if defined (SPI2_PORT_F)  
-    #define  BRD_SPI_PORT_CLK         BRD_SPI1_F_PORT_CLK 
-    #define  BRD_SPI_PORT             BRD_SPI1_F_PORT
-    #define  BRD_SPI_PINS             BRD_SPI1_F_PINS
-    #define  BRD_SPI_PINS_FUNC        BRD_SPI1_F_PINS_FUNC 
-    #define  BRD_SPI_PINS_FUNC_CLEAR  BRD_SPI1_F_PINS_FUNC_CLEAR
+//  SPI1 Pins Select
+  #define  BRD_SPI1_PORT_CLK         BRD_SPI1_F_PORT_CLK 
+  #define  BRD_SPI1_PORT             BRD_SPI1_F_PORT
+  #define  BRD_SPI1_PINS             BRD_SPI1_F_PINS
+  #define  BRD_SPI1_PINS_FUNC        BRD_SPI1_F_PINS_FUNC 
+  #define  BRD_SPI1_PINS_FUNC_CLEAR  BRD_SPI1_F_PINS_FUNC_CLEAR
   
-    #define  BRD_SPI_CLOCK         (RST_CLK_PCLK_SSP1 | RST_CLK_PCLK_SSP2 | RST_CLK_PCLK_DMA)  // All SSP and DMA - from Errata
-    #define  BRD_SPI               MDR_SSP1
+  #define  BRD_SPI1_CLOCK            RST_CLK_PCLK_SSP1
+  #define  BRD_SPI1                  MDR_SSP1
     
-  #elif defined (SPI2_PORT_D)
-    #define  BRD_SPI_PORT_CLK         BRD_SPI2_D_PORT_CLK 
-    #define  BRD_SPI_PORT             BRD_SPI2_D_PORT
-    #define  BRD_SPI_PINS             BRD_SPI2_D_PINS
-    #define  BRD_SPI_PINS_FUNC        BRD_SPI2_D_PINS_FUNC 
-    #define  BRD_SPI_PINS_FUNC_CLEAR  BRD_SPI2_D_PINS_FUNC_CLEAR    
+//  SPI2 Pins Select    
+  #define  BRD_SPI2_PORT_CLK         BRD_SPI2_D_PORT_CLK 
+  #define  BRD_SPI2_PORT             BRD_SPI2_D_PORT
+  #define  BRD_SPI2_PINS             BRD_SPI2_D_PINS
+  #define  BRD_SPI2_PINS_FUNC        BRD_SPI2_D_PINS_FUNC 
+  #define  BRD_SPI2_PINS_FUNC_CLEAR  BRD_SPI2_D_PINS_FUNC_CLEAR    
   
-    #define  BRD_SPI_CLOCK         (RST_CLK_PCLK_SSP1 | RST_CLK_PCLK_SSP2 | RST_CLK_PCLK_DMA)  // All SSP and DMA - from Errata
-    #define  BRD_SPI               MDR_SSP2
+  #define  BRD_SPI2_CLOCK            RST_CLK_PCLK_SSP2
+  #define  BRD_SPI2                  MDR_SSP2
     
-  #endif  
-
-
 #endif
 
-
+//  Traffic settings
 SSP_InitTypeDef _SSPInitStruct = 
 {
-  10,                         //  SSP_SCR - Фактор скорости передачи данных  
-  100,                        //  SSP_CPSDVSR - Предделитель тактовой частоты
-  SSP_ModeMaster,             //  SSP_Mode
-  SSP_WordLength8b,           //  SSP_WordLength - Длина кадра
+  .SSP_SCR        = 0,                         //  SSP_SCR - Р¤Р°РєС‚РѕСЂ СЃРєРѕСЂРѕСЃС‚Рё РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…  
+  .SSP_CPSDVSR    = 12,                        //  SSP_CPSDVSR - РџСЂРµРґРґРµР»РёС‚РµР»СЊ С‚Р°РєС‚РѕРІРѕР№ С‡Р°СЃС‚РѕС‚С‹
+  .SSP_Mode       = SSP_ModeMaster,             //  SSP_Mode
+  .SSP_WordLength = SSP_WordLength8b,           //  SSP_WordLength - Р”Р»РёРЅР° РєР°РґСЂР°
 
-  SSP_SPH_1Edge,              //  SSP_SPH  - Фаза тактового сигнала
-  SSP_SPO_Low,                //  SSP_SPO  - Полярность тактовых импульсов
-  SSP_FRF_SPI_Motorola,       //  SSP_FRF  - Протокол передачи данных
+  .SSP_SPH        = SSP_SPH_1Edge,              //  SSP_SPH  - Р¤Р°Р·Р° С‚Р°РєС‚РѕРІРѕРіРѕ СЃРёРіРЅР°Р»Р°
+  .SSP_SPO        = SSP_SPO_Low,                //  SSP_SPO  - РџРѕР»СЏСЂРЅРѕСЃС‚СЊ С‚Р°РєС‚РѕРІС‹С… РёРјРїСѓР»СЊСЃРѕРІ
+  .SSP_FRF        = SSP_FRF_SPI_Motorola,       //  SSP_FRF  - РџСЂРѕС‚РѕРєРѕР» РїРµСЂРµРґР°С‡Рё РґР°РЅРЅС‹С…
   
-  //SSP_HardwareFlowControl_SSE, // SSP_HardwareFlowControl - Аппаратное управление передачей данных
-  SSP_HardwareFlowControl_LBM   // тестовый режим - выход на вход
+  .SSP_HardwareFlowControl = SSP_HardwareFlowControl_SSE    // SSP_HardwareFlowControl - РђРїРїР°СЂР°С‚РЅРѕРµ СѓРїСЂР°РІР»РµРЅРёРµ РїРµСЂРµРґР°С‡РµР№ РґР°РЅРЅС‹С…
+  //.SSP_HardwareFlowControl = SSP_HardwareFlowControl_LBM  // С‚РµСЃС‚РѕРІС‹Р№ СЂРµР¶РёРј - РІС‹С…РѕРґ РЅР° РІС…РѕРґ
 };
 
 
+  uint16_t SSP_SCR;                        /*!< This member configures the SSP communication speed.
+                                                This parameter is number from 0 to 255.
+                                                The information rate is computed using the following formula:
+                                                F_SSPCLK / ( CPSDVR * (1 + SCR) ) */
+  uint16_t SSP_CPSDVSR;                    /*!< This member configures the SSP clock divider.
+                                                This parameter is an even number from 2 to 254 */
+  uint16_t SSP_Mode;                       /*!< Specifies the number of stop bits transmitted.
+                                                This parameter is one of @ref SSP_Mode values. */
+  uint16_t SSP_WordLength;                 /*!< Specifies the number of data bits transmitted or received in a frame.
+                                                This parameter is one of @ref SSP_Word_Length values. */
+  uint16_t SSP_SPH;                        /*!< Specifies the number of stop bits transmitted.
+                                                This parameter is one of @ref SSP_Clock_Phase values. */
+  uint16_t SSP_SPO;                        /*!< Specifies the number of stop bits transmitted.
+                                                This parameter is one of @ref SSP_Clock_Polarity values. */
+  uint16_t SSP_FRF;                        /*!< Specifies the number of stop bits transmitted.
+                                                This parameter is one of @ref SSP_Frame_Format values. */
+  uint16_t SSP_HardwareFlowControl;        /*!< Specifies whether the hardware flow control mode is enabled or disabled.
+                                                This parameter is one of @ref SSP_Hardware_Flow_Control values. */
 
-SPI_Obj  BRD_SPIx = {
 
+
+BRD_SPI_Obj  BRD_SPI1_Obj = {
   //  Pins Init
-  BRD_SPI_PORT,            //  PORTx
-  BRD_SPI_PORT_CLK,        //  Port_ClockMask 
-  BRD_SPI_PINS,            //  Port_PinsSel
-  BRD_SPI_PINS_FUNC,       //  Port_PinsFunc
-  BRD_SPI_PINS_FUNC_CLEAR, //  Port_PinsFunc_ClearMask
+  .PORTx          = BRD_SPI1_PORT,            //  MDR_PORT_TypeDef*
+  .Port_ClockMask = BRD_SPI1_PORT_CLK,        //  uint32_t 
+  .Port_PinsSel   = BRD_SPI1_PINS,            //  uint32_t
+  .Port_PinsFunc  = BRD_SPI1_PINS_FUNC,       //  PORT_FUNC_TypeDef
+  .Port_PinsFunc_ClearMask = BRD_SPI1_PINS_FUNC_CLEAR, //  uint32_t
   //  SPI Init
-  BRD_SPI,                 //  SPIx
-  BRD_SPI_CLOCK,           //  SPI_ClockMask
+  .SPIx           = BRD_SPI1,                 //  MDR_SSP_TypeDef*
+  .SPI_ClockMask  = BRD_SPI1_CLOCK,           //  uint32_t
   //  SPI Struct
-  &_SSPInitStruct
+  .pSSPInitStruct = &_SSPInitStruct           //  SSP_InitTypeDef*
 };
 
-SPI_Obj* pBRD_SPIx = &BRD_SPIx;
+BRD_SPI_Obj  BRD_SPI2_Obj = {
+  //  Pins Init
+  .PORTx          = BRD_SPI2_PORT,            //  MDR_PORT_TypeDef*
+  .Port_ClockMask = BRD_SPI2_PORT_CLK,        //  uint32_t 
+  .Port_PinsSel   = BRD_SPI2_PINS,            //  uint32_t
+  .Port_PinsFunc  = BRD_SPI2_PINS_FUNC,       //  PORT_FUNC_TypeDef
+  .Port_PinsFunc_ClearMask = BRD_SPI2_PINS_FUNC_CLEAR, //  uint32_t
+  //  SPI Init
+  .SPIx           = BRD_SPI2,                 //  MDR_SSP_TypeDef*
+  .SPI_ClockMask  = BRD_SPI2_CLOCK,           //  uint32_t
+  //  SPI Struct
+  .pSSPInitStruct = &_SSPInitStruct           //  SSP_InitTypeDef*
+};
 
-
+BRD_SPI_Obj* pBRD_SPI1 = &BRD_SPI1_Obj;
+BRD_SPI_Obj* pBRD_SPI2 = &BRD_SPI2_Obj;
 
 
 #endif //BRD_SPI_SELECT_H

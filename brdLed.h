@@ -17,5 +17,6 @@ void BRD_LED_Switch(uint32_t LEDs_Sel);
 void BRD_LED_Set(uint32_t LEDs_Sel, uint32_t isOn);
 uint32_t BRD_LED_Get(uint32_t LEDs_Sel);
 
-
+void BRD_LEDs_InitEx(uint32_t pinSelect);
+  
 #endif //_BRD_LED__H

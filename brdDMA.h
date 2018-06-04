@@ -8,6 +8,15 @@
   #include <MDR32F9Qx_rst_clk.h>
   #include <MDR32F9Qx_dma.h>
 
+  #ifdef USE_BOARD_VE_1  
+    #define DMA_Channel_TIM1      DMA_Channel_SREQ_TIM1
+    #define DMA_Channel_TIM2      DMA_Channel_SREQ_TIM2
+    #define DMA_Channel_TIM3      DMA_Channel_SREQ_TIM3
+    #define DMA_Channel_TIM4      DMA_Channel_SREQ_TIM4
+    
+    #define DMA_Channel_SSP2_RX   DMA_Channel_SREQ_SSP2_RX
+  #endif
+
 #else
   #include <mdr32f8_port.h>
   #include <mdr32f8_clkctrl.h>
@@ -16,7 +25,7 @@
   #include "brdVE8_toVEx.h"
   
   #define DMA_IRQn  DMA_DONE0_IRQn
-  
+    
   void BRD_DMA_ReadRegs(DMAControl *logRegs);  
 #endif
 

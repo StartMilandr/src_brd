@@ -17,6 +17,23 @@ void BRD_LEDs_Init(void)
 	PORT_Init(BRD_LED_PORT, &GPIOInitStruct);
 }
 
+void BRD_LEDs_InitEx(uint32_t pinSelect)
+{	
+	PORT_InitTypeDef GPIOInitStruct;	
+	
+	//	Clock for PORTC
+	RST_CLK_PCLKcmd (BRD_LED_PORT_CLK, ENABLE);
+	
+	//  Post apply config
+	PORT_StructInit(&GPIOInitStruct);
+  GPIOInitStruct.PORT_Pin        = pinSelect;
+  GPIOInitStruct.PORT_OE         = PORT_OE_OUT;
+  GPIOInitStruct.PORT_SPEED      = PORT_SPEED_SLOW;
+  GPIOInitStruct.PORT_MODE       = PORT_MODE_DIGITAL;
+	
+	PORT_Init(BRD_LED_PORT, &GPIOInitStruct);
+}
+
 void BRD_LED_Set(uint32_t LEDs_Sel, uint32_t isOn)
 {
 	if (isOn)

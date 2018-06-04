@@ -6,11 +6,11 @@
 //  Pattern for timer counter
 Timer_Obj brdTimer1 =
 {
-  .TIMERx     = MDR_TIMER1,             		//  MDR_TIMER_TypeDef*  TIMERx;
-  .ClockMask  = RST_CLK_PCLK_TIMER1,    	//  uint32_t    ClockMask;
-  .ClockBRG   = TIMER_HCLKdiv1,         		//  uint32_t    ClockBRG;
-  .EventIT    = TIMER_STATUS_CNT_ARR,   	//  uint32_t    EventIT;
-  .IRQn       = Timer1_IRQn             		//  IRQn_Type   IRQn;  
+  .TIMERx     = MDR_TIMER1,             //  MDR_TIMER_TypeDef*  TIMERx;
+  .ClockMask  = RST_CLK_PCLK_TIMER1,    //  uint32_t    ClockMask;
+  .ClockBRG   = TIMER_HCLKdiv1,         //  uint32_t    ClockBRG;
+  .EventIT    = TIMER_STATUS_CNT_ARR,   //  uint32_t    EventIT;
+  .IRQn       = Timer1_IRQn             //  IRQn_Type   IRQn;  
 };
 
 //  Pattern for Capture timer pin

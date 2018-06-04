@@ -2,16 +2,16 @@
 #include "brdDef.h"
 
 
-// Êîíôèãóðàöèÿ ëèíèé ââîäà-âûâîäà
-void BRD_SPI_PortInit (SPI_Obj* BRD_SPI)
+// ÐšÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ Ð»Ð¸Ð½Ð¸Ð¹ Ð²Ð²Ð¾Ð´Ð°-Ð²Ñ‹Ð²Ð¾Ð´Ð°
+void BRD_SPI_PortInit (BRD_SPI_Obj* BRD_SPI)
 {
-  // Ñòðóêòóðà äëÿ èíèöèàëèçàöèè ëèíèé ââîäà-âûâîäà
+  // Ð¡Ñ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ð° Ð´Ð»Ñ Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð»Ð¸Ð½Ð¸Ð¹ Ð²Ð²Ð¾Ð´Ð°-Ð²Ñ‹Ð²Ð¾Ð´Ð°
   PORT_InitTypeDef GPIOInitStruct;
 
-  // Ðàçðåøåíèå òàêòèðîâàíèÿ ïîðòà
+  // Ð Ð°Ð·Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ Ñ‚Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¿Ð¾Ñ€Ñ‚Ð°
   RST_CLK_PCLKcmd (BRD_SPI->Port_ClockMask, ENABLE);	
 	
-  // Îáùàÿ êîíôèãóðàöèÿ ëèíèé ââîäà-âûâîäà
+  // ÐžÐ±Ñ‰Ð°Ñ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ Ð»Ð¸Ð½Ð¸Ð¹ Ð²Ð²Ð¾Ð´Ð°-Ð²Ñ‹Ð²Ð¾Ð´Ð°
   GPIOInitStruct.PORT_PULL_UP   = PORT_PULL_UP_OFF;
   GPIOInitStruct.PORT_PULL_DOWN = PORT_PULL_DOWN_OFF;
   GPIOInitStruct.PORT_PD_SHM    = PORT_PD_SHM_OFF;
@@ -20,63 +20,63 @@ void BRD_SPI_PortInit (SPI_Obj* BRD_SPI)
   GPIOInitStruct.PORT_SPEED     = PORT_SPEED_MAXFAST;
   GPIOInitStruct.PORT_MODE      = PORT_MODE_DIGITAL;
 
-  // Èíèöèàëèçàöèÿ âûâîäîâ
+  // Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð²Ñ‹Ð²Ð¾Ð´Ð¾Ð²
   GPIOInitStruct.PORT_Pin     = BRD_SPI->Port_PinsSel;
   GPIOInitStruct.PORT_FUNC    = BRD_SPI->Port_PinsFunc;  
   
   PORT_Init (BRD_SPI->PORTx, &GPIOInitStruct);
 }
 
-void BRD_SPI_Init(SPI_Obj* BRD_SPI, uint32_t isMaster)
+void BRD_SPI_Init(BRD_SPI_Obj* BRD_SPI, uint32_t isMaster)
 {
-  // Òàêòèðîâàíèå
+  // Ð¢Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ
 	RST_CLK_PCLKcmd(BRD_SPI->SPI_ClockMask, ENABLE);	
 	
-  // Äåèíèöèàëèçàöèÿ ìîäóëÿ SSP1
+  // Ð”ÐµÐ¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¼Ð¾Ð´ÑƒÐ»Ñ SSP1
   SSP_DeInit (BRD_SPI->SPIx);
 
-  // Âûáîð ïðåääåëèòåëÿ òàêòîâîé ÷àñòîòû äëÿ ìîäóëÿ SSP1
+  // Ð’Ñ‹Ð±Ð¾Ñ€ Ð¿Ñ€ÐµÐ´Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»Ñ Ñ‚Ð°ÐºÑ‚Ð¾Ð²Ð¾Ð¹ Ñ‡Ð°ÑÑ‚Ð¾Ñ‚Ñ‹ Ð´Ð»Ñ Ð¼Ð¾Ð´ÑƒÐ»Ñ SSP1
   SSP_BRGInit (BRD_SPI->SPIx, SSP_HCLKdiv1);
 
-  // Âûáîð Ìàñòåð - Âåäîìûé
+  // Ð’Ñ‹Ð±Ð¾Ñ€ ÐœÐ°ÑÑ‚ÐµÑ€ - Ð’ÐµÐ´Ð¾Ð¼Ñ‹Ð¹
   if (isMaster)
     BRD_SPI->pSSPInitStruct->SSP_Mode = SSP_ModeMaster;
   else
     BRD_SPI->pSSPInitStruct->SSP_Mode = SSP_ModeSlave;
 
-  // Èíèöèàëèçàöèÿ ìîäóëÿ SSP1
+  // Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ Ð¼Ð¾Ð´ÑƒÐ»Ñ SSP1
   SSP_Init (BRD_SPI->SPIx, BRD_SPI->pSSPInitStruct);
 
-  // Âêëþ÷åíèå ìîäóëÿ SSP1
+  // Ð’ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ð¼Ð¾Ð´ÑƒÐ»Ñ SSP1
   SSP_Cmd (BRD_SPI->SPIx, ENABLE);
 	
 	//	Wait FIFO TX empty
 	while (SSP_GetFlagStatus(BRD_SPI->SPIx, SSP_FLAG_TFE) != SET);
-  BRD_SPI_FIFO_RX_Clear(BRD_SPI);
+  BRD_SPI_ClearFIFO_RX(BRD_SPI);
 }  
 
 
-void BRD_SPI_SendValue(SPI_Obj* BRD_SPI, uint16_t value)
+void BRD_SPI_SendValue(BRD_SPI_Obj* BRD_SPI, uint16_t value)
 {	
 	SSP_SendData (BRD_SPI->SPIx, value);
 }
 
-uint32_t BRD_SPI_ReadValue(SPI_Obj* BRD_SPI)
+uint32_t BRD_SPI_ReadValue(BRD_SPI_Obj* BRD_SPI)
 {	
 	return SSP_ReceiveData(BRD_SPI->SPIx);
 }
 
-uint32_t BRD_SPI_CanSend(SPI_Obj* BRD_SPI)
+uint32_t BRD_SPI_CanSend(BRD_SPI_Obj* BRD_SPI)
 {		
 	return SSP_GetFlagStatus(BRD_SPI->SPIx, SSP_FLAG_TFE) == SET; // TX buff Empty
 }
 
-uint32_t BRD_SPI_CanRead(SPI_Obj* BRD_SPI)
+uint32_t BRD_SPI_CanRead(BRD_SPI_Obj* BRD_SPI)
 {	
 	return SSP_GetFlagStatus(BRD_SPI->SPIx, SSP_FLAG_RNE) == SET;  // RX buff Not Empty
 }
 
-uint16_t BRD_SPI_Master_WRRD(SPI_Obj* BRD_SPI, uint16_t wrData)  // Return RDValue
+uint16_t BRD_SPI_Master_WRRD(BRD_SPI_Obj* BRD_SPI, uint16_t wrData)  // Return RDValue
 {
   //  Send  
   SSP_SendData (BRD_SPI->SPIx, wrData);
@@ -85,26 +85,26 @@ uint16_t BRD_SPI_Master_WRRD(SPI_Obj* BRD_SPI, uint16_t wrData)  // Return RDVal
   return SSP_ReceiveData(BRD_SPI->SPIx);
 }
 
-void BRD_SPI_Master_WR(SPI_Obj* BRD_SPI, uint16_t wrData)
+void BRD_SPI_Master_WR(BRD_SPI_Obj* BRD_SPI, uint16_t wrData)
 {
   //  Send  
   SSP_SendData (BRD_SPI->SPIx, wrData);
   while (SSP_GetFlagStatus (BRD_SPI->SPIx, SSP_FLAG_BSY) == SET); 
 }
 
-uint16_t BRD_SPI_Wait_And_Read(SPI_Obj* BRD_SPI)  // Return RDValue
+uint16_t BRD_SPI_Wait_And_Read(BRD_SPI_Obj* BRD_SPI)  // Return RDValue
 {
   while (!BRD_SPI_CanRead(BRD_SPI));
   return SSP_ReceiveData(BRD_SPI->SPIx);
 }
 
-void BRD_SPI_Slave_SendNext(SPI_Obj* BRD_SPI, uint16_t wrNextData)  // Return RDValue
+void BRD_SPI_Slave_SendNext(BRD_SPI_Obj* BRD_SPI, uint16_t wrNextData)  // Return RDValue
 {
   SSP_SendData (BRD_SPI->SPIx, wrNextData);
 }
 
 
-uint16_t BRD_SPI_Slave_RDWR(SPI_Obj* BRD_SPI, uint16_t wrNextData)  // Return RDValue
+uint16_t BRD_SPI_Slave_RDWR(BRD_SPI_Obj* BRD_SPI, uint16_t wrNextData)  // Return RDValue
 {
   uint32_t rdValue;
   //  Read
@@ -115,19 +115,31 @@ uint16_t BRD_SPI_Slave_RDWR(SPI_Obj* BRD_SPI, uint16_t wrNextData)  // Return RD
   return rdValue;
 }
 
-
-void BRD_SPI_WAIT_FIFO_TX_Clear(SPI_Obj* BRD_SPI)
+void BRD_SPI_FillFIFO_TX(BRD_SPI_Obj* BRD_SPI, uint16_t data)
 {
-	while (SSP_GetFlagStatus(BRD_SPI->SPIx, SSP_FLAG_TFE) != SET); 
+  while (SSP_GetFlagStatus (BRD_SPI->SPIx, SSP_FLAG_TNF) != SET)
+  {
+    SSP_SendData (BRD_SPI->SPIx, data);
+  }  
 }
 
-void BRD_SPI_FIFO_RX_Clear(SPI_Obj* BRD_SPI)
+void BRD_SPI_ClearFIFO_RX(BRD_SPI_Obj* BRD_SPI)
 {
   while (BRD_SPI_CanRead(BRD_SPI))
     SSP_ReceiveData(BRD_SPI->SPIx);
 } 
 
-void BRD_SPI_FIFO_TX_Clear_Slave(SPI_Obj* BRD_SPI)
+void BRD_SPI_Wait_ClearFIFO_TX(BRD_SPI_Obj* BRD_SPI)
+{
+	while (SSP_GetFlagStatus(BRD_SPI->SPIx, SSP_FLAG_TFE) != SET); 
+}
+
+void BRD_SPI_Wait_WhileBusy(BRD_SPI_Obj* BRD_SPI)
+{
+	while (SSP_GetFlagStatus(BRD_SPI->SPIx, SSP_FLAG_BSY) == SET); 
+}
+
+void BRD_SPI_ClearFIFO_TX_Slave(BRD_SPI_Obj* BRD_SPI)
 {
   uint32_t PORT_OE = BRD_SPI->PORTx->OE;
   uint32_t PORT_FUNC = BRD_SPI->PORTx->FUNC;
@@ -143,7 +155,7 @@ void BRD_SPI_FIFO_TX_Clear_Slave(SPI_Obj* BRD_SPI)
   BRD_SPI_Init(BRD_SPI, 1);  
   
   //  FIFO TX Clear
-  BRD_SPI_WAIT_FIFO_TX_Clear(BRD_SPI);
+  BRD_SPI_ClearFIFO_RX(BRD_SPI);
   
   //  SPI To Slave
   BRD_SPI_Init(BRD_SPI, 0);
