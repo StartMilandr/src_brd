@@ -67,27 +67,6 @@ SSP_InitTypeDef _SSPInitStruct =
 };
 
 
-  uint16_t SSP_SCR;                        /*!< This member configures the SSP communication speed.
-                                                This parameter is number from 0 to 255.
-                                                The information rate is computed using the following formula:
-                                                F_SSPCLK / ( CPSDVR * (1 + SCR) ) */
-  uint16_t SSP_CPSDVSR;                    /*!< This member configures the SSP clock divider.
-                                                This parameter is an even number from 2 to 254 */
-  uint16_t SSP_Mode;                       /*!< Specifies the number of stop bits transmitted.
-                                                This parameter is one of @ref SSP_Mode values. */
-  uint16_t SSP_WordLength;                 /*!< Specifies the number of data bits transmitted or received in a frame.
-                                                This parameter is one of @ref SSP_Word_Length values. */
-  uint16_t SSP_SPH;                        /*!< Specifies the number of stop bits transmitted.
-                                                This parameter is one of @ref SSP_Clock_Phase values. */
-  uint16_t SSP_SPO;                        /*!< Specifies the number of stop bits transmitted.
-                                                This parameter is one of @ref SSP_Clock_Polarity values. */
-  uint16_t SSP_FRF;                        /*!< Specifies the number of stop bits transmitted.
-                                                This parameter is one of @ref SSP_Frame_Format values. */
-  uint16_t SSP_HardwareFlowControl;        /*!< Specifies whether the hardware flow control mode is enabled or disabled.
-                                                This parameter is one of @ref SSP_Hardware_Flow_Control values. */
-
-
-
 BRD_SPI_Obj  BRD_SPI1_Obj = {
   //  Pins Init
   .PORTx          = BRD_SPI1_PORT,            //  MDR_PORT_TypeDef*
