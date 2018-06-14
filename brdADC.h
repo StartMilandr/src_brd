@@ -31,6 +31,9 @@ void BRD_ADC1_InitIRQ_EndConv(void);
 uint16_t BRD_ADC1_GetValue(void);
 void BRD_ADC1_StartAndWaitCompleted(void);
 
+void BRD_ADC1_RunSingle(uint32_t goEna);
+void BRD_ADC1_RunSample(uint32_t sampleEna);
+
 
 
 #endif //_BRD_ADC_H

@@ -41,6 +41,23 @@ void BRD_ADCs_Init(ADC_InitTypeDef  *ADCInitStruct)
   ADC_Init(ADCInitStruct);
 }  
 
+void BRD_ADC1_RunSingle(uint32_t goEna)
+{
+  if (goEna)
+    MDR_ADC->ADC1_CFG |= ADC1_CFG_REG_GO;
+  else
+    MDR_ADC->ADC1_CFG &= ~ADC1_CFG_REG_GO;
+}
+
+void BRD_ADC1_RunSample(uint32_t sampleEna)
+{
+  if (sampleEna)
+    MDR_ADC->ADC1_CFG |= ADC1_CFG_REG_SAMPLE;
+  else
+    MDR_ADC->ADC1_CFG &= ~ADC1_CFG_REG_SAMPLE;
+}
+
+
 void BRD_ADCx_InitStruct(ADCx_InitTypeDef *ADCxInitStruct)
 {
   // Конфигурация модуля ADC1
