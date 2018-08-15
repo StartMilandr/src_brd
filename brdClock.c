@@ -100,7 +100,7 @@ void BRD_Clock_Init_HSE_dir(void)
 
 
 // -------------------------- USE_MDR1986VE9x ---------------------	
-#elif defined ( USE_MDR1986VE9x ) || defined ( USE_MDR1986BE4 )
+#elif defined ( USE_MDR1986VE9x ) || defined ( USE_MDR1986BE4 ) || defined ( USE_MDR1901VC1T )
 
 void BRD_Clock_Init_HSE_PLL(uint32_t PLL_Mul_sub1)  // 128 MHz
 {

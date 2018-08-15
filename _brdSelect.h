@@ -11,6 +11,7 @@
 // #define USE_BOARD_VE_3 
 // #define USE_BOARD_VE_4 
 // #define USE_BOARD_VE_8 
+// #define USE_BOARD_VC1 
 
 
 #endif //_BRD_SELECT_H

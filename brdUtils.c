@@ -25,3 +25,5 @@ uint32_t BRD_IsNE(uint32_t value, uint32_t level)
 {
   return value != level;
 }
+
+

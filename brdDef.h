@@ -30,6 +30,10 @@
 #elif defined ( USE_BOARD_VE_8 )
 
   #include "brdDef_VE8.h"
+  
+#elif defined ( USE_BOARD_VC1 )
+
+  #include "brdDef_VC1.h"
 
 #endif
 
