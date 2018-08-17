@@ -5,7 +5,7 @@
 #include "brdDef.h"
 
 //#define BRD_EXTBUS_START_ADDR	0x10000000  - Defined through brdDefs.h in brdDef_VExx.h
-#define EXTBUS_ADDR(x) (BRD_EXTBUS_START_ADDR + ((x) << 2))
+#define EXTBUS_ADDR(x) (BRD_EBC_START_ADDR + ((x) << 2))
 #define HWEXTBUS(x) HWREG(EXTBUS_ADDR(x))
 
 #define WAIT_STARTED_CYCLES 100

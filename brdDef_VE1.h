@@ -147,9 +147,13 @@
 
     
     //  EBC SUMMARY
-    #define BRD_EBS_A20_D32_CLK  (BRD_EBC_PORT_ADDR20_CLK | BRD_EBC_PORT_ADDR20_1_CLK | BRD_EBC_PORT_ADDR20_2_CLK | \
+    #define BRD_EBC_A20_D32_CLK  (BRD_EBC_PORT_ADDR20_CLK | BRD_EBC_PORT_ADDR20_1_CLK | BRD_EBC_PORT_ADDR20_2_CLK | \
                                   BRD_EBC_DATA_PORT_LO16_CLK | BRD_EBC_DATA_PORT_HI16_CLK | \
                                   BRD_EBC_PORT_CTRL_CLK | BRD_EBC_PORT_CTRL_1_CLK)
+                                  
+    #define BRD_EBC_START_ADDR	    0x50000000
+    #define BRD_EBC_REGION          EBC_MEM_REGION_50000000
+
                                   
 //  ----------    LCD Definition -------------
     #define BRD_LCD_E1_PORT     MDR_PORTE

@@ -82,6 +82,9 @@
     #define BRD_EBC_PORT_READY_PINS       PORT_Pin_0
     #define BRD_EBC_PORT_READY_FUNC       PORT_FUNC_MAIN
 
+    #define BRD_EBC_START_ADDR	    0x10000000
+    #define BRD_EBC_A20_D32_CLK     (BRD_EBC_DATA_PORT_LO8_CLK | BRD_EBC_DATA_PORT_LO16_CLK | BRD_EBC_DATA_PORT_HI16_CLK | BRD_EBC_PORT_CTRL_CLK | BRD_EBC_PORT_ADDR20_CLK | BRD_EBC_PORT_ADDR20_1_CLK)
+
 //  ---------------  UART1 Definition ----------------
     //  Uart1 TX - PB0
     #define BRD_UART1_TX_PB0_PORT        MDR_PORTB
