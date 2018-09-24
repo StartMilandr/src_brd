@@ -8,14 +8,14 @@
 
   //  #define RST_CLK_CPU_PLLmul1   8
   //  #define RST_CLK_CPU_PLLmul2   8
-  #define RST_CLK_CPU_PLLmul3   1
-  #define RST_CLK_CPU_PLLmul4   2
-  #define RST_CLK_CPU_PLLmul5   3
-  #define RST_CLK_CPU_PLLmul6   4
-  #define RST_CLK_CPU_PLLmul7   5
-  #define RST_CLK_CPU_PLLmul8   6
-  #define RST_CLK_CPU_PLLmul9   7
-  #define RST_CLK_CPU_PLLmul10  8 
+  #define RST_CLK_CPU_PLLmul3   3
+  #define RST_CLK_CPU_PLLmul4   4
+  #define RST_CLK_CPU_PLLmul5   5
+  #define RST_CLK_CPU_PLLmul6   6
+  #define RST_CLK_CPU_PLLmul7   7
+  #define RST_CLK_CPU_PLLmul8   8
+  #define RST_CLK_CPU_PLLmul9   9
+  #define RST_CLK_CPU_PLLmul10  10 
 
 
 //  Port

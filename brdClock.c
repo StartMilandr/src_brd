@@ -4,7 +4,7 @@
 uint32_t BRD_CPU_CLK = (uint32_t)8000000;
 
 // -------------------------- USE_MDR1986VE1x ---------------------	
-#ifdef USE_MDR1986VE1T
+#if defined ( USE_MDR1986VE1T ) || defined ( USE_MDR1986VE3 )
 
 typedef enum {
 	RI_till_10KHz, RI_till_200KHz, RI_till_500KHz, RI_till_1MHz, 
@@ -154,51 +154,51 @@ void BRD_Clock_Init_HSE_dir(void)
 }
 
 // -------------------------- USE_MDR1986VE3 ---------------------
-#elif defined ( USE_MDR1986VE3 ) 
+//#elif defined ( USE_MDR1986VE3 ) 
 
-void BRD_Clock_Init_HSE_PLL(uint32_t PLL_Mul_sub1)  // 128 MHz
-{
-	RST_CLK_DeInit();
-	
-	/* Enable HSE (High Speed External) clock */
-	RST_CLK_HSEconfig(RST_CLK_HSE_ON);
-	while (RST_CLK_HSEstatus() != SUCCESS);
+//void BRD_Clock_Init_HSE_PLL(uint32_t PLL_Mul_sub1)  // 128 MHz
+//{
+//	RST_CLK_DeInit();
+//	
+//	/* Enable HSE (High Speed External) clock */
+//	RST_CLK_HSEconfig(RST_CLK_HSE_ON);
+//	while (RST_CLK_HSEstatus() != SUCCESS);
 
-//	/* Configures the CPU_PLL clock source */
-	RST_CLK_CPU_PLLconfig(RST_CLK_CPU_PLLsrcHSEdiv1, PLL_Mul_sub1);
+////	/* Configures the CPU_PLL clock source */
+//	RST_CLK_CPU_PLLconfig(RST_CLK_CPU_PLLsrcHSEdiv1, PLL_Mul_sub1);
 
-	/* Enables the CPU_PLL */
-	RST_CLK_CPU_PLLcmd(ENABLE);
-	while (RST_CLK_CPU_PLLstatus() == ERROR);		
-	
-	/* Enables the RST_CLK_PCLK_EEPROM */
-	RST_CLK_PCLKcmd(RST_CLK_PCLK_EEPROM, ENABLE);
+//	/* Enables the CPU_PLL */
+//	RST_CLK_CPU_PLLcmd(ENABLE);
+//	while (RST_CLK_CPU_PLLstatus() == ERROR);		
+//	
+//	/* Enables the RST_CLK_PCLK_EEPROM */
+//	RST_CLK_PCLKcmd(RST_CLK_PCLK_EEPROM, ENABLE);
 
-		/* Sets the code latency value */
-	if (PLL_Mul * HSE_Value < 25E+6)
-		EEPROM_SetLatency(EEPROM_Latency_0);
-	else if (PLL_Mul * HSE_Value < 50E+6)
-		EEPROM_SetLatency(EEPROM_Latency_1);
-	else if (PLL_Mul * HSE_Value < 75E+6)
-		EEPROM_SetLatency(EEPROM_Latency_2);
-	else if (PLL_Mul * HSE_Value < 100E+6)
-		EEPROM_SetLatency(EEPROM_Latency_3);
-	else if (PLL_Mul * HSE_Value < 125E+6)
-		EEPROM_SetLatency(EEPROM_Latency_4);
-	else //if (PLL_Mul * HSE_Value <= 150E+6)
-		EEPROM_SetLatency(EEPROM_Latency_5);
-		
-	/* Select the CPU_PLL output as input for CPU_C3_SEL */
-	RST_CLK_CPU_PLLuse(ENABLE);
-	/* Set CPUClk Prescaler */
-	RST_CLK_CPUclkPrescaler(RST_CLK_CPUclkDIV1);
+//		/* Sets the code latency value */
+//	if (PLL_Mul * HSE_Value < 25E+6)
+//		EEPROM_SetLatency(EEPROM_Latency_0);
+//	else if (PLL_Mul * HSE_Value < 50E+6)
+//		EEPROM_SetLatency(EEPROM_Latency_1);
+//	else if (PLL_Mul * HSE_Value < 75E+6)
+//		EEPROM_SetLatency(EEPROM_Latency_2);
+//	else if (PLL_Mul * HSE_Value < 100E+6)
+//		EEPROM_SetLatency(EEPROM_Latency_3);
+//	else if (PLL_Mul * HSE_Value < 125E+6)
+//		EEPROM_SetLatency(EEPROM_Latency_4);
+//	else //if (PLL_Mul * HSE_Value <= 150E+6)
+//		EEPROM_SetLatency(EEPROM_Latency_5);
+//		
+//	/* Select the CPU_PLL output as input for CPU_C3_SEL */
+//	RST_CLK_CPU_PLLuse(ENABLE);
+//	/* Set CPUClk Prescaler */
+//	RST_CLK_CPUclkPrescaler(RST_CLK_CPUclkDIV1);
 
-	/* Select the CPU clock source */
-	RST_CLK_CPUclkSelection(RST_CLK_CPUclkCPU_C3);
-  
-  //  Update System Clock
-  BRD_CPU_CLK = HSE_Value * (PLL_Mul_sub1 + 1);    
-}
+//	/* Select the CPU clock source */
+//	RST_CLK_CPUclkSelection(RST_CLK_CPUclkCPU_C3);
+//  
+//  //  Update System Clock
+//  BRD_CPU_CLK = HSE_Value * (PLL_Mul_sub1 + 1);    
+//}
 
 
 #endif

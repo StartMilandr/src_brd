@@ -21,7 +21,7 @@ void BRD_Clock_Init_HSE0_PLL(uint32_t pll_Q, uint32_t pll_N)
 	
 	CLKCTRL_MAX_CLKSelection(CLKCTRL_MAX_CLK_PLL0);
     
-  BRD_CPU_CLK = HSE0_Value * (pll_N + 2)/ (pll_Q + 1);
+  BRD_CPU_CLK = HSE0_Value * pll_N / (pll_Q + 1);
 }
 
 void BRD_Clock_Init_HSE0_60MHz(void)
@@ -31,5 +31,5 @@ void BRD_Clock_Init_HSE0_60MHz(void)
 
 void BRD_Clock_Init_HSE_PLL(uint32_t PLL_Mul)
 {
-  BRD_Clock_Init_HSE0_PLL(0, PLL_Mul - 2);
+  BRD_Clock_Init_HSE0_PLL(0, PLL_Mul);
 }
