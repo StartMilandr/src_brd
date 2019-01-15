@@ -19,6 +19,10 @@
 
   #include "brdDef_VE1.h"
 
+#elif defined ( USE_BOARD_VE1_LDM )
+
+  #include "brdDef_VE1_LDM.h"
+
 #elif defined ( USE_BOARD_VE_3 )
 
   #include "brdDef_VE3.h"

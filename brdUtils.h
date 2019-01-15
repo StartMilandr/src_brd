@@ -16,5 +16,6 @@ uint32_t BRD_IsLT(uint32_t value, uint32_t level);
 uint32_t BRD_IsEQ(uint32_t value, uint32_t level);
 uint32_t BRD_IsNE(uint32_t value, uint32_t level);
 
+uint32_t Pseudo_Rand(uint32_t addr);
 
 #endif //_BRD_UTILS_H

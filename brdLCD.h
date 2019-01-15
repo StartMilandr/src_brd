@@ -23,6 +23,7 @@
 #define BRD_LCD_Init    LCD_Initialize
 #define BRD_LCD_Print   LCD_PutString
 
+void BRD_LCD_ScrollStringLeft(const char* inpString, uint8_t y, uint8_t strLength);
 
 // Прототипы функций
 void    LCD_ConfigureGPIO(void);

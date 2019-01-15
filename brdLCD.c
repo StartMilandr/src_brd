@@ -600,3 +600,42 @@ void LCD_PutImage (const uint8_t* image, int32_t top, int32_t left, int32_t bott
       count += 8;
     }
 }
+
+static void BRD_LCD_ShiftString (const char* inpString, uint8_t shift, uint8_t screenWidth, char* outString)
+{
+  uint8_t i, j;
+
+  // Пропуск пустой строки
+  if (!strlen(inpString))
+    return;
+
+  j = shift;
+  for (i = 0; i < screenWidth; i++)
+  {
+    if (inpString[j] == 0)
+      j = 0;
+
+    outString[i] = inpString[j];
+    ++j;
+  }
+  outString[screenWidth] = 0;
+}
+
+static void BRD_LCD_ScrollString (const char* string, uint8_t y, uint8_t shift)
+{
+  char scroll[LCD_SCREEN_WIDTH + 1];  // Строка, получаемая в результате сдвига
+
+  BRD_LCD_ShiftString(string, shift, LCD_SCREEN_WIDTH, scroll);
+  LCD_PutString(scroll, y);
+}
+
+void BRD_LCD_ScrollStringLeft(const char* inpString, uint8_t y, uint8_t strLength)
+{
+  static uint8_t shift = 0;   
+ 
+  BRD_LCD_ScrollString(inpString, y, shift);  
+    
+  ++shift;
+  if (shift >= strLength)
+    shift = 0;
+}
